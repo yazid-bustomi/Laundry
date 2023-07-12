@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -14,6 +16,7 @@ class AdminController extends Controller
     public function index()
     {
         //
+        return view('admin.index');
     }
 
     /**
@@ -23,7 +26,8 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        $user = User::all();
+        return view('admin.create', compact('user'));
     }
 
     /**
@@ -35,6 +39,17 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         //
+        $user = User::all();
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->alamat = $request->alamat;
+        $user->phone = $request->phone;
+        $user->role = $request->role;
+        $user->password = $request->password;
+        $user->save();
+        return redirect(route('pelanggan'));
     }
 
     /**
@@ -81,4 +96,9 @@ class AdminController extends Controller
     {
         //
     }
+
+    public function tambahPelanggan(){
+        return view('admin.tpelanggan');
+    }
+
 }

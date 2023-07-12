@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +17,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/admin', [AdminController::class, 'index'])->name('homeadm');
+Route::get('/admin/pelanggan', [AdminController::class, 'create'])->name('pelanggan');
+Route::get('/admin/tambahpelanggan', [AdminController::class, 'tambahPelanggan'])->name('tpelanggan');
+Route::post('/admin/tambahpelanggan', [AdminController::class, 'store'])->name('spelanggan');
+
+
+Route::get('/user', [UserController::class, 'index'])->name('homeusr');

@@ -46,5 +46,24 @@ class UserSeeders extends Seeder
             'phone' => '222222',
         ]);
 
+        DB::table('paket')->insert([
+            'id' => '1',
+            'namapaket' => 'kilo',
+            'harga' => '10000',
+        ]);
+
+
+        DB::table('paket')->insert([
+            'id' => '2',
+            'namapaket' => 'atasan',
+            'harga' => '2000',
+        ]);
+
+        DB::table('paket')->insert([
+            'id' => '3',
+            'namapaket' => 'bawahan',
+            'harga' => '3500',
+        ]);
+
     }
 }
