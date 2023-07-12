@@ -19,7 +19,7 @@ class CreateOrdersTable extends Migration
             $table->integer('kilo')->nullable();
             $table->integer('atasan')->nullable();
             $table->integer('bawahan')->nullable();
-            $table->integer('harga');
+            $table->integer('harga')->nullable();
             $table->string('status');
             $table->timestamps();
         });

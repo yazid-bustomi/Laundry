@@ -26,6 +26,7 @@ class OrderController extends Controller
     public function create()
     {
         //
+        return view('user.order');    
     }
 
     /**
@@ -37,6 +38,17 @@ class OrderController extends Controller
     public function store(StoreOrderRequest $request)
     {
         //
+        $order = Order::all();
+
+        $order = new Order();
+        $order->user_id = $request->user_id;
+        $order->kilo = $request->kilo;
+        $order->atasan = $request->atasan;
+        $order->bawahan = $request->bawahan;
+        $order->harga = $request->harga;
+        $order->status = $request->status;
+        $order->save();
+        return redirect(route('homeusr'));
     }
 
     /**

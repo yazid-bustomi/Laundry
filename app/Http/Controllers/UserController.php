@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -14,7 +16,9 @@ class UserController extends Controller
     public function index()
     {
         //
-        return view('user.index');
+        $user = Auth::user()->id;
+        $order = Order::where('user_id', $user)->get();
+        return view('user.index', compact('order'));
     }
 
     /**
@@ -82,4 +86,6 @@ class UserController extends Controller
     {
         //
     }
+
+
 }
