@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -99,6 +100,12 @@ class AdminController extends Controller
 
     public function tambahPelanggan(){
         return view('admin.tpelanggan');
+    }
+
+    public function listorder(){
+        $order = Order::with('user')->get();
+
+        return view('admin.listorder', compact('order'));
     }
 
 }

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
+use App\Models\Admin;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +32,8 @@ Route::get('/admin', [AdminController::class, 'index'])->name('homeadm');
 Route::get('/admin/pelanggan', [AdminController::class, 'create'])->name('pelanggan');
 Route::get('/admin/tambahpelanggan', [AdminController::class, 'tambahPelanggan'])->name('tpelanggan');
 Route::post('/admin/tambahpelanggan', [AdminController::class, 'store'])->name('spelanggan');
-
+Route::get('/admin/order', [AdminController::class, 'listorder'])->name('listorder');
+Route::get('/admin/order/{id}', [AdminController::class, 'aksi'])->name('aksi');
 
 Route::get('/user', [UserController::class, 'index'])->name('homeusr');
 Route::get('/order', [OrderController::class, 'create'])->name('order');

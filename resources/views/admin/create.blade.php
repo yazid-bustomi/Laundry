@@ -6,7 +6,7 @@
             <div class="col-sm">
                 <div class="card">
                     <h3 class="card-title px-4 pt-4">
-                        List User
+                        List Pelanggan
                         <a href="{{ route('tpelanggan') }}" class="btn btn-primary float-end">Tambah Pelanggan</a>
                     </h3>
 

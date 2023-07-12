@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
         <div class="card">
-            <h2 class="card-title">Order</h2>
+            <h2 class="card-title pt-4 px-5">Laundry</h2>
             <div class="card-body">
                 <form action="{{ route('sorder') }}" method="POST">
                     @csrf
