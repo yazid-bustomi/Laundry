@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Blade;
 
 class AdminController extends Controller
@@ -42,7 +43,7 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // //
         $user = User::all();
 
         $user = new User();
@@ -51,10 +52,33 @@ class AdminController extends Controller
         $user->alamat = $request->alamat;
         $user->phone = $request->phone;
         $user->role = $request->role;
-        $user->password = $request->password;
+        $user->password = Hash::make($request->password);
         $user->save();
-        return redirect(route('pelanggan'));
+        return redirect(route('pelanggan'))->with('success','berhasil masuk data yang diinputkan!!');;
+
     }
+    //     $request->validate
+    //     (
+    //     [
+    //         'name' => 'required|max:255',
+    //         'email' => 'required|unique:users',
+    //         'password' => 'required'Hash::make($request->password)
+    //     ]
+    //     )
+    //     ;
+ 
+    //     $data=[
+    //         'name'=>$request->input('name'),
+    //         'email'=>$request->input('email'),
+    //         'alamat'=>$request->input('alamat'),
+    //         'phone' => $request->input('phone'),
+    //         'role' => $request->input('role'),
+    //         'password' => $request->input('password'),
+    //     ];
+
+    // User::create($data);
+    // return redirect(route('pelanggan'))->with('success','berhasil masuk data yang diinputkan!!');
+    // }
 
     /**
      * Display the specified resource.
