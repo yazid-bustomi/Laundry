@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -38,6 +39,18 @@ class OrderController extends Controller
     public function store(StoreOrderRequest $request)
     {
         //
+
+        // $validate = $request->validate([
+        //     'kilo' => 'integer',
+        //     'bawahan' => 'integer',
+        //     'atasan' => 'integer',
+        // ]);
+
+        if (empty($request->kilo) || empty($request->bawahan) || empty($request->atasan)){
+            $error = "Silahkan pilih salah satu";
+            return redirect('order')->withErrors($error);
+        }
+
         $order = Order::all();
 
         $order = new Order();

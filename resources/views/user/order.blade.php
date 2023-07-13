@@ -4,6 +4,12 @@
         <div class="card">
             <h2 class="card-title pt-4 px-5">Laundry</h2>
             <div class="card-body">
+                @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                        <li>{{ $errors }}</li>
+                </div>
+                @endif
+
                 <form action="{{ route('sorder') }}" method="POST">
                     @csrf
                     <input type="hidden" name="user_id" id="user_id" name="user_id" value="{{ Auth::user()->id }}">
