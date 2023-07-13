@@ -6,11 +6,11 @@
             <div class="card-body">
                 @if (count($errors) > 0)
                 <div class="alert alert-danger">
-                        <li>{{ $errors }}</li>
+                        <li>{{ $errors->first() }}</li>
                 </div>
                 @endif
 
-                <form action="{{ route('sorder') }}" method="POST">
+                <form action="{{ route('sorder') }}" method="POST" id="orderForm">
                     @csrf
                     <input type="hidden" name="user_id" id="user_id" name="user_id" value="{{ Auth::user()->id }}">
                     <input type="hidden" name="status" id="status" name="user_id" value="order">
@@ -39,15 +39,23 @@
 @endsection
 
 
-{{-- <script>
-    const checkbox = document.getElementById('cekkilo');
-    const input = document.getElementById('kilo');
+<script>
+    function confirmOrder() {
+        var kilo = 10000;
+        var atasan = 2000;
+        var bawahan = 3000;
+        var kilo = document.getElementById('pktkilo').value;
+        var atasan = document.getElementById('pktatas').value;
+        var bawahan = document.getElementById('pktbwh').value;
 
-    checkbox.addEventListener('change', function() {
-        if (this.checked) {
-            input.readonly = false;
-        } else {
-            input.readonly = true;
+        var message = 'Anda akan mengirimkan pesanan dengan detail:\n';
+        message += 'Paket Kilo: ' + kilo + '\n';
+        message += 'Paket Atasan: ' + atasan + '\n';
+        message += 'Paket Bawahan: ' + bawahan + '\n';
+        // message += 'Total ' + ki
+
+        if (confirm(message)) {
+            document.getElementById('orderForm').submit();
         }
-    });
-</script> --}}
+    }
+</script>

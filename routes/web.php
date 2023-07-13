@@ -19,9 +19,7 @@ use App\Models\Admin;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+Route::get('/', [HomeController::class, 'index']);
 
 
 Auth::routes();

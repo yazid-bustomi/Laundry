@@ -46,22 +46,23 @@ class OrderController extends Controller
         //     'atasan' => 'integer',
         // ]);
 
-        if (empty($request->kilo) || empty($request->bawahan) || empty($request->atasan)){
-            $error = "Silahkan pilih salah satu";
+        if ($request->kilo == "" || $request->bawahan == "" || $request->atasan == ""){
+            $error = "Silahkan isi salah satu paket";
             return redirect('order')->withErrors($error);
+        }else{
+            $order = Order::all();
+    
+            $order = new Order();
+            $order->user_id = $request->user_id;
+            $order->kilo = $request->kilo;
+            $order->atasan = $request->atasan;
+            $order->bawahan = $request->bawahan;
+            $order->harga = $request->harga;
+            $order->status = $request->status;
+            $order->save();
+            return redirect(route('homeusr'));
         }
 
-        $order = Order::all();
-
-        $order = new Order();
-        $order->user_id = $request->user_id;
-        $order->kilo = $request->kilo;
-        $order->atasan = $request->atasan;
-        $order->bawahan = $request->bawahan;
-        $order->harga = $request->harga;
-        $order->status = $request->status;
-        $order->save();
-        return redirect(route('homeusr'));
     }
 
     /**
