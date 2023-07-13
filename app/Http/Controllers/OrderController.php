@@ -46,10 +46,17 @@ class OrderController extends Controller
         //     'atasan' => 'integer',
         // ]);
 
-        if ($request->kilo == "" || $request->bawahan == "" || $request->atasan == ""){
+        if ($request->kilo == "" && $request->bawahan == "" && $request->atasan == ""){
             $error = "Silahkan isi salah satu paket";
             return redirect('order')->withErrors($error);
         }else{
+
+            $kilo = $request->kilo * 10000;
+            $atasan = $request->atasan * 2000;
+            $bawahan = $request->bawahan * 3000;
+
+            $total = $kilo + $atasan + $bawahan;
+
             $order = Order::all();
     
             $order = new Order();
@@ -57,7 +64,7 @@ class OrderController extends Controller
             $order->kilo = $request->kilo;
             $order->atasan = $request->atasan;
             $order->bawahan = $request->bawahan;
-            $order->harga = $request->harga;
+            $order->harga = $total;
             $order->status = $request->status;
             $order->save();
             return redirect(route('homeusr'));

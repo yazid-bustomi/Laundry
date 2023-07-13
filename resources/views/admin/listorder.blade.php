@@ -29,16 +29,26 @@
                                 <tr>
                                     <td>{{ $no }}</td>
                                     <td>{{ $item->user->name }}</td>
-                                    <td>{{ $item->kilo }} Kg</td>
-                                    <td>{{ $item->atasan }} Pcs</td>
-                                    <td>{{ $item->bawahan }} Pcs</td>
-                                    <td>Rp.{{ $item->harga }}</td>
-                                    <td>{{ $item->status }}</td>
+                                    @if ($item->kilo == '')
+                                            <td>{{ $item->kilo }}</td>
+                                        @else
+                                            <td>{{ $item->kilo }} Kg</td>
+                                        @endif
+                                        @if ($item->atasan == '')
+                                            <td>{{ $item->atasan }}</td>
+                                        @else
+                                            <td>{{ $item->atasan }} Pcs</td>
+                                        @endif
+                                        @if ($item->bawahan == '')
+                                            <td>{{ $item->bawahan }}</td>
+                                        @else
+                                            <td>{{ $item->bawahan }} Pcs</td>
+                                        @endif
+                                        <td>@currency($item->harga)</td>
+                                        <td>{{ $item->status }}</td>
                                     <td>
-                                        <form action="/admin/order/{{ $item->id }}" method="post">
-                                            @csrf
-                                            <input type="button" value="proses">
-                                        </form>
+                                        <a href="{{ route('aksi', $item->id) }}">Proses</a>
+                                        {{-- <a href="/admin/order{{ $item->id }}}">Selesai</a> --}}
                                     </td>
                                 </tr>
                                 <?php $no++; ?>

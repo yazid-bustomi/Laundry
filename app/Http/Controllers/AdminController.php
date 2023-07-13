@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
 use App\Models\User;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Blade;
 
 class AdminController extends Controller
 {
@@ -106,8 +107,16 @@ class AdminController extends Controller
 
     public function listorder(){
         $order = Order::with('user')->get();
+        Blade::directive('currency', function ($expression) {
+            return "Rp. <?php echo number_format($expression, 0, ',', '.'); ?>";
+        });
 
         return view('admin.listorder', compact('order'));
+    }
+
+    public function aksi(Request $request, $id){
+        $order = Order::find($id);
+        return $request;
     }
 
 }

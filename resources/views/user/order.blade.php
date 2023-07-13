@@ -16,7 +16,7 @@
                     <input type="hidden" name="status" id="status" name="user_id" value="order">
 
                     <div class="mb-3 mt-3">
-                        <label for="pktkilo" class="form-label">Paket Kilo :</label>
+                        <label for="pktkilo" class="form-label">Paket Kilo : </label>
                         <input type="text" class="form-control" id="pktkilo" placeholder="Silahkan isi satuan kilogram"
                             name="kilo">
                     </div>
@@ -30,6 +30,20 @@
                         <input type="text" class="form-control" id="pktbwh" placeholder="Silahkan isi jumlah pcs"
                             name="bawahan">
                     </div>
+
+                    <div class="mb-3">
+                        <table>
+                            <tr>
+                                <td class="text-primary">Harga Paket Perkilo Rp.10.000</td>
+                            </tr>
+                            <tr>
+                                <td class="text-primary">Harga Paket Atasan Rp.2.000</td>
+                            </tr>
+                            <tr>
+                                <td class="text-primary">Harga Paket Bawahan Rp.3.000</td>
+                            </tr>
+                        </table>
+                    </div>
                     <button type="submit" class="btn btn-primary">Order</button>
                 </form>
             </div>
@@ -41,18 +55,19 @@
 
 <script>
     function confirmOrder() {
-        var kilo = 10000;
-        var atasan = 2000;
-        var bawahan = 3000;
-        var kilo = document.getElementById('pktkilo').value;
-        var atasan = document.getElementById('pktatas').value;
-        var bawahan = document.getElementById('pktbwh').value;
+        var hkilo = 10000;
+        var hatasan = 2000;
+        var hbawahan = 3000;
+        var kilo = parsint(document.getElementById('pktkilo').value);
+        var atasan = parsint(document.getElementById('pktatas').value);
+        var bawahan = parsint(document.getElementById('pktbwh').value);
+        var total = (kilo * hkilo) + (atasan * hatasan) + (bawahan * hbawahan);
 
         var message = 'Anda akan mengirimkan pesanan dengan detail:\n';
         message += 'Paket Kilo: ' + kilo + '\n';
         message += 'Paket Atasan: ' + atasan + '\n';
         message += 'Paket Bawahan: ' + bawahan + '\n';
-        // message += 'Total ' + ki
+        message += 'Total ' + total;
 
         if (confirm(message)) {
             document.getElementById('orderForm').submit();
