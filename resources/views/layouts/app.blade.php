@@ -54,10 +54,6 @@
                                 <li class="nav-item active">
                                     <a class="nav-link" href="{{ route('homeusr') }}">Home <span class="sr-only"></span></a>
                                 </li>
-
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="{{ route('order') }}">Order<span class="sr-only"></span></a>
-                                </li>
                             @endif
 
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"

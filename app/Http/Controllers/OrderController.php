@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
@@ -46,25 +47,18 @@ class OrderController extends Controller
         //     'atasan' => 'integer',
         // ]);
 
-        if ($request->kilo == "" && $request->bawahan == "" && $request->atasan == ""){
-            $error = "Silahkan isi salah satu paket";
-            return redirect('order')->withErrors($error);
+        if ($request->kilo == ""){
+            $error = "Silahkan isi jumlah kilogram";
+            return redirect(route('pktkilo'))->withErrors($error);
         }else{
-
             $kilo = $request->kilo * 10000;
-            $atasan = $request->atasan * 2000;
-            $bawahan = $request->bawahan * 3000;
-
-            $total = $kilo + $atasan + $bawahan;
 
             $order = Order::all();
     
             $order = new Order();
             $order->user_id = $request->user_id;
             $order->kilo = $request->kilo;
-            $order->atasan = $request->atasan;
-            $order->bawahan = $request->bawahan;
-            $order->harga = $total;
+            $order->harga = $kilo;
             $order->status = $request->status;
             $order->save();
             return redirect(route('homeusr'));
@@ -115,5 +109,16 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         //
+    }
+
+    public function pktbiji(){
+        return view('user.biji');
+    }
+
+    public function pktbijistore(StoreOrderRequest $request){
+        $atasan = $request->atasan * 2000;
+        $bawahan = $request->bawahan * 3000;
+        
+        // belum selesai
     }
 }

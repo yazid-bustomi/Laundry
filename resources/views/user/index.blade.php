@@ -5,9 +5,14 @@
         <div class="row">
             <div class="col-sm">
                 <div class="card">
-                    <h3 class="card-title px-4 pt-4">
-                        List Order
-                    </h3>
+                    <div class="card-title">
+                        <h3 class="card-title px-4 pt-4">
+                            List Order
+                            <a href="{{ route('pktkilo') }}" class="btn btn-primary float-end me-4">Paket Kilo</a>
+                            <a href="{{ route('pktbiji') }}" class="btn btn-primary float-end me-5 pe-3 ">Paket Biji</a>
+                        </h3>
+
+                    </div>
 
                     <div class="card-body">
                         <table class="table">
@@ -43,11 +48,11 @@
                                         @endif
                                         <td>@currency($item->harga)</td>
                                         @if ($item->status == 'Order')
-                                        <td class="text-success">{{ $item->status }}</td>
+                                            <td class="text-success">{{ $item->status }}</td>
                                         @elseIf($item->status == 'Proses')
-                                        <td class="text-primary">{{ $item->status }}</td>
+                                            <td class="text-primary">{{ $item->status }}</td>
                                         @else
-                                        <td class="text-danger">{{ $item->status }}</td>
+                                            <td class="text-danger">{{ $item->status }}</td>
                                         @endif
                                     </tr>
                                     <?php $no++; ?>
@@ -60,5 +65,3 @@
         </div>
     </div>
 @endsection
-
-
