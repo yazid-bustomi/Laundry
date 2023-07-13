@@ -13,7 +13,7 @@
                 <form action="{{ route('sorder') }}" method="POST" id="orderForm">
                     @csrf
                     <input type="hidden" name="user_id" id="user_id" name="user_id" value="{{ Auth::user()->id }}">
-                    <input type="hidden" name="status" id="status" name="user_id" value="order">
+                    <input type="hidden" name="status" id="status" name="user_id" value="Order">
 
                     <div class="mb-3 mt-3">
                         <label for="pktkilo" class="form-label">Paket Kilo : </label>

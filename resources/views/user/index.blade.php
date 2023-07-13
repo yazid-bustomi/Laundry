@@ -42,7 +42,13 @@
                                             <td>{{ $item->bawahan }} Pcs</td>
                                         @endif
                                         <td>@currency($item->harga)</td>
-                                        <td>{{ $item->status }}</td>
+                                        @if ($item->status == 'Order')
+                                        <td class="text-success">{{ $item->status }}</td>
+                                        @elseIf($item->status == 'Proses')
+                                        <td class="text-primary">{{ $item->status }}</td>
+                                        @else
+                                        <td class="text-danger">{{ $item->status }}</td>
+                                        @endif
                                     </tr>
                                     <?php $no++; ?>
                                 @endforeach

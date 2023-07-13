@@ -46,20 +46,20 @@
                                         @endif
                                         <td>@currency($item->harga)</td>
                                         @if ($item->status == 'Selesai')
-                                            <td class="text-success">{{ $item->status }}</td>
+                                            <td class="text-danger">{{ $item->status }}</td>
                                             <td>
-                                                <div class="text-success">Selesai</div>
+                                                <div class="text-danger">Selesai</div>
                                             </td>
                                         @endif
 
-                                        @if ($item->status == 'order')
-                                            <td>{{ $item->status }}</td>
+                                        @if ($item->status == 'Order')
+                                            <td class="text-success">{{ $item->status }}</td>
                                             <td>
                                                 <a href="{{ route('proses', $item->id) }}"
                                                     class="btn btn-success">Proses</a>
                                             </td>
                                         @elseIf($item->status == 'Proses')
-                                            <td>{{ $item->status }}</td>
+                                            <td class="text-primary">{{ $item->status }}</td>
                                             <td>
                                                 <a href="{{ route('selesai', $item->id) }}"
                                                     class="btn btn-primary">Selesai</a>
