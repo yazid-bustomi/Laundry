@@ -1,35 +1,35 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-sm">
-            <div class="card">
-                <h3 class="card-title px-4 pt-4">
-                    List Order
-                </h3>
-                    
-                <div class="card-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">Nama</th>
-                                <th scope="col">Paket Kilo</th>
-                                <th scope="col">Atasan</th>
-                                <th scope="col">Bawahan</th>
-                                <th scope="col">Harga</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $no = 1; ?>
-                            @foreach ($order as $item)
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <div class="card">
+                    <h3 class="card-title px-4 pt-4">
+                        List Order
+                    </h3>
+
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
                                 <tr>
-                                    <td>{{ $no }}</td>
-                                    <td>{{ $item->user->name }}</td>
-                                    @if ($item->kilo == '')
+                                    <th scope="col">No</th>
+                                    <th scope="col">Nama</th>
+                                    <th scope="col">Paket Kilo</th>
+                                    <th scope="col">Atasan</th>
+                                    <th scope="col">Bawahan</th>
+                                    <th scope="col">Harga</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $no = 1; ?>
+                                @foreach ($order as $item)
+                                    <tr>
+                                        <td>{{ $no }}</td>
+                                        <td>{{ $item->user->name }}</td>
+                                        @if ($item->kilo == '')
                                             <td>{{ $item->kilo }}</td>
                                         @else
                                             <td>{{ $item->kilo }} Kg</td>
@@ -45,19 +45,34 @@
                                             <td>{{ $item->bawahan }} Pcs</td>
                                         @endif
                                         <td>@currency($item->harga)</td>
-                                        <td>{{ $item->status }}</td>
-                                    <td>
-                                        <a href="{{ route('aksi', $item->id) }}">Proses</a>
-                                        {{-- <a href="/admin/order{{ $item->id }}}">Selesai</a> --}}
-                                    </td>
-                                </tr>
-                                <?php $no++; ?>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                        @if ($item->status == 'Selesai')
+                                            <td class="text-danger">{{ $item->status }}</td>
+                                            <td>
+                                                <div class="text-danger">Selesai</div>
+                                            </td>
+                                        @endif
+
+                                        @if ($item->status == 'Order')
+                                            <td class="text-success">{{ $item->status }}</td>
+                                            <td>
+                                                <a href="{{ route('proses', $item->id) }}"
+                                                    class="btn btn-success">Proses</a>
+                                            </td>
+                                        @elseIf($item->status == 'Proses')
+                                            <td class="text-primary">{{ $item->status }}</td>
+                                            <td>
+                                                <a href="{{ route('selesai', $item->id) }}"
+                                                    class="btn btn-primary">Selesai</a>
+                                            </td>
+                                        @endif
+                                    </tr>
+                                    <?php $no++; ?>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection

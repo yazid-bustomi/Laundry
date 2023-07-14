@@ -138,9 +138,19 @@ class AdminController extends Controller
         return view('admin.listorder', compact('order'));
     }
 
-    public function aksi(Request $request, $id){
-        $order = Order::find($id);
-        return $request;
+    public function proses($id){
+        $order = Order::find($id)->update([
+            'status' => 'Proses'
+        ]);
+        return redirect(route('listorder'));
+
+    }
+
+    public function selesai($id){
+        $order = Order::find($id)->update([
+            'status' => 'Selesai'
+        ]);
+        return redirect(route('listorder'));
     }
 
 }

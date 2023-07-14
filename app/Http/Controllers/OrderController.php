@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Order;
+use App\Models\Paket;
+use GuzzleHttp\Psr7\Request;
 
 class OrderController extends Controller
 {
@@ -27,7 +28,7 @@ class OrderController extends Controller
     public function create()
     {
         //
-        return view('user.order');    
+        return view('user.order');
     }
 
     /**
@@ -46,25 +47,18 @@ class OrderController extends Controller
         //     'atasan' => 'integer',
         // ]);
 
-        if ($request->kilo == "" && $request->bawahan == "" && $request->atasan == ""){
-            $error = "Silahkan isi salah satu paket";
-            return redirect('order')->withErrors($error);
-        }else{
-
+        if ($request->kilo == "") {
+            $error = "Silahkan isi jumlah kilogram";
+            return redirect(route('pktkilo'))->withErrors($error);
+        } else {
             $kilo = $request->kilo * 10000;
-            $atasan = $request->atasan * 2000;
-            $bawahan = $request->bawahan * 3000;
-
-            $total = $kilo + $atasan + $bawahan;
 
             $order = Order::all();
-    
+
             $order = new Order();
             $order->user_id = $request->user_id;
             $order->kilo = $request->kilo;
-            $order->atasan = $request->atasan;
-            $order->bawahan = $request->bawahan;
-            $order->harga = $total;
+            $order->harga = $kilo;
             $order->status = $request->status;
             $order->save();
             return redirect(route('homeusr'));
@@ -115,5 +109,34 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         //
+    }
+
+    public function pktbiji()
+    {
+        $paket = Paket::all();
+
+        return view('user.biji', compact('paket'));
+    }
+
+    public function pktbijistore(StoreOrderRequest $request)
+    {
+
+        $totalharga = 0;
+
+        $product = $request->input('product');
+        $jumlah = $request->input('jumlah');
+
+        $productData = Paket::findOrFail($product);
+        $hargaProduk = $productData->harga;
+
+        $totalharga = $hargaProduk * $jumlah;
+
+        return $totalharga;
+
+        // belum selesai
+    }
+
+    public function pktbijishow(StoreOrderRequest $request){
+        //masih belum tau di isi apa
     }
 }
