@@ -32,17 +32,25 @@
         </div>
         <div class="col-5">
             <div class="card">
-                <div class="card-title">
-                    <h4>Daftar Item</h4>
+                <div class="card-title" >
+                    <h4 class=" pt-4 px-5">Daftar Item</h4>
                 </div>
                 <div class="card-body">
-                    <ul id="daftarItem"></ul>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Produk</th>
+                                <th>Jumlah</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="daftarItem"></tbody>
+                    </table>
                     <h5>Total Harga: <span id="totalHarga"></span></h5>
                 </div>
             </div>
         </div>
     </div>
-
     <script>
         function calculateTotal() {
             var product = document.getElementById('product');
@@ -56,23 +64,31 @@
             var product = document.getElementById('product');
             var jumlah = document.getElementById('jumlah');
             var selectedProduct = product.options[product.selectedIndex].text;
-            var newItem = document.createElement('li');
-            newItem.textContent = selectedProduct + ' - Jumlah: ' + jumlah.value;
+
+            var tableRow = document.createElement('tr');
+
+            var productNameCell = document.createElement('td');
+            productNameCell.textContent = selectedProduct;
+            tableRow.appendChild(productNameCell);
+
+            var jumlahCell = document.createElement('td');
+            jumlahCell.textContent = jumlah.value;
+            tableRow.appendChild(jumlahCell);
+
+            var deleteButtonCell = document.createElement('td');
             var deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Hapus','fs-1';
-            deleteButton.classList.add('btn', 'btn-danger','btn_sm', 'ms-2', 'me-2'); // Tambahkan class 'me-2' untuk margin kanan
+            deleteButton.textContent = 'Hapus';
+            deleteButton.classList.add('btn', 'btn-danger');
             deleteButton.onclick = function() {
-                newItem.remove();
+                tableRow.remove();
                 calculateTotal();
             };
-            newItem.appendChild(deleteButton);
-            document.getElementById('daftarItem').appendChild(newItem);
+            deleteButtonCell.appendChild(deleteButton);
+            tableRow.appendChild(deleteButtonCell);
+
+            document.getElementById('daftarItem').appendChild(tableRow);
             calculateTotal();
         }
     </script>
-
 @endsection
-
-
-    
 
