@@ -15,6 +15,8 @@ class CreateLainlainsTable extends Migration
     {
         Schema::create('lainlains', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->integer('harga');
             $table->timestamps();
         });
     }
