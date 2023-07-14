@@ -5,7 +5,6 @@
             <div class="card">
                 <h2 class="card-title pt-4 px-5">Paket Bijian</h2>
                 <div class="card-body">
-
                     <form action="{{ route('pktbiji') }}" method="POST" id="orderForm">
                         @csrf
                         <div class="mb-3">
@@ -23,7 +22,7 @@
                             <label for="jumlah">Jumlah:</label>
                             <input type="number" name="jumlah" id="jumlah" onchange="calculateTotal()" min="1"
                                 value="1">
-                            <a href="{{ route('pktbiji') }}" class="btn btn-info">Tambah</a>
+                            <button type="button" class="btn btn-info" onclick="addItem()">Tambah</button>
                         </div>
                         <a class="btn btn-danger ms-4" href="{{ route('homeusr') }}">Back</a>
                         <button type="submit" class="btn btn-primary ms-5">Order</button>
@@ -37,14 +36,43 @@
                     <h4>Daftar Item</h4>
                 </div>
                 <div class="card-body">
-                    @foreach (barang as $item)
-                        <ul id="daftarItem">
-                            <li></li>
-                        </ul>
-                    @endforeach
+                    <ul id="daftarItem"></ul>
                     <h5>Total Harga: <span id="totalHarga"></span></h5>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        function calculateTotal() {
+            var product = document.getElementById('product');
+            var jumlah = document.getElementById('jumlah');
+            var harga = product.options[product.selectedIndex].dataset.harga;
+            var totalHarga = parseInt(harga) * parseInt(jumlah.value);
+            document.getElementById('totalHarga').textContent = totalHarga;
+        }
+
+        function addItem() {
+            var product = document.getElementById('product');
+            var jumlah = document.getElementById('jumlah');
+            var selectedProduct = product.options[product.selectedIndex].text;
+            var newItem = document.createElement('li');
+            newItem.textContent = selectedProduct + ' - Jumlah: ' + jumlah.value;
+            var deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Hapus','fs-1';
+            deleteButton.classList.add('btn', 'btn-danger','btn_sm', 'ms-2', 'me-2'); // Tambahkan class 'me-2' untuk margin kanan
+            deleteButton.onclick = function() {
+                newItem.remove();
+                calculateTotal();
+            };
+            newItem.appendChild(deleteButton);
+            document.getElementById('daftarItem').appendChild(newItem);
+            calculateTotal();
+        }
+    </script>
+
 @endsection
+
+
+    
+
