@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use App\Models\Order;
 use App\Models\Paket;
 use GuzzleHttp\Psr7\Request;
-use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -29,7 +28,7 @@ class OrderController extends Controller
     public function create()
     {
         //
-        return view('user.order');    
+        return view('user.order');
     }
 
     /**
@@ -48,14 +47,14 @@ class OrderController extends Controller
         //     'atasan' => 'integer',
         // ]);
 
-        if ($request->kilo == ""){
+        if ($request->kilo == "") {
             $error = "Silahkan isi jumlah kilogram";
             return redirect(route('pktkilo'))->withErrors($error);
-        }else{
+        } else {
             $kilo = $request->kilo * 10000;
 
             $order = Order::all();
-    
+
             $order = new Order();
             $order->user_id = $request->user_id;
             $order->kilo = $request->kilo;
@@ -112,16 +111,32 @@ class OrderController extends Controller
         //
     }
 
-    public function pktbiji(){
+    public function pktbiji()
+    {
         $paket = Paket::all();
 
         return view('user.biji', compact('paket'));
     }
 
-    public function pktbijistore(StoreOrderRequest $request){
-        $atasan = $request->atasan * 2000;
-        $bawahan = $request->bawahan * 3000;
-        
+    public function pktbijistore(StoreOrderRequest $request)
+    {
+
+        $totalharga = 0;
+
+        $product = $request->input('product');
+        $jumlah = $request->input('jumlah');
+
+        $productData = Paket::findOrFail($product);
+        $hargaProduk = $productData->harga;
+
+        $totalharga = $hargaProduk * $jumlah;
+
+        return $totalharga;
+
         // belum selesai
+    }
+
+    public function pktbijishow(StoreOrderRequest $request){
+        //masih belum tau di isi apa
     }
 }
