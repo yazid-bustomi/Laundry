@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use App\Models\Paket;
 use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -112,7 +113,9 @@ class OrderController extends Controller
     }
 
     public function pktbiji(){
-        return view('user.biji');
+        $paket = Paket::all();
+
+        return view('user.biji', compact('paket'));
     }
 
     public function pktbijistore(StoreOrderRequest $request){
