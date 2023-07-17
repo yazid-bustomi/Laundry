@@ -37,6 +37,7 @@ class OrderDetailController extends Controller
     public function store(StoreOrderDetailRequest $request)
     {
         // menambahkan
+        
     }
 
     /**
