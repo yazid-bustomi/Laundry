@@ -18,7 +18,7 @@
                     <div class="mb-3 mt-3">
                         <label for="pktkilo" class="form-label">Paket Kilo : </label>
                         <input type="text" class="form-control" id="pktkilo" placeholder="Silahkan isi satuan kilogram"
-                            name="kilo">
+                            name="jumlah">
                     </div>
                     
                     <div class="mb-3">

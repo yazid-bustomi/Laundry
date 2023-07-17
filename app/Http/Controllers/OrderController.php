@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\Paket;
 use GuzzleHttp\Psr7\Request;
 
@@ -47,20 +48,34 @@ class OrderController extends Controller
         //     'atasan' => 'integer',
         // ]);
 
+        return $request;
+
+
+        // untuk menambahkan 1 di baris akhir No order 
+        $no = Order::all()->last();
+        $tambahNo = $no->no_order + 1;
+
         if ($request->kilo == "") {
             $error = "Silahkan isi jumlah kilogram";
             return redirect(route('pktkilo'))->withErrors($error);
         } else {
-            $kilo = $request->kilo * 10000;
-
+            
+            $orderDetail = OrderDetail::all();
             $order = Order::all();
 
             $order = new Order();
             $order->user_id = $request->user_id;
-            $order->kilo = $request->kilo;
-            $order->harga = $kilo;
+            $order->no_order = $tambahNo;
             $order->status = $request->status;
             $order->save();
+
+            $orderDetail = new OrderDetail();
+            $orderDetail->paket_id = 1;
+            // $orderDetail->order_id = 
+            $orderDetail->jumlah = $request->jumlah;
+            // $orderDetail->harga = 
+            // $orderDetail->total_harga = 
+
             return redirect(route('homeusr'));
         }
 
@@ -120,6 +135,15 @@ class OrderController extends Controller
 
     public function pktbijistore(StoreOrderRequest $request)
     {
+        // $validate = $request->validate([
+        //         'kilo' => 'array',
+        //         'bawahan' => 'integer',
+        //         'atasan' => 'integer',
+        //     ]);
+
+        // foreach($request['kilo'] as $key => $kilo){
+        //     $paket_id = $request['pket'[$key]
+        // }
 
         $totalharga = 0;
 
@@ -136,7 +160,12 @@ class OrderController extends Controller
         // belum selesai
     }
 
-    public function pktbijishow(StoreOrderRequest $request){
-        //masih belum tau di isi apa
+    public function pktbijishow(StoreOrderRequest $request)
+    {
+        // foreach($request->product as $product){
+        //     return $product;
+        // }
+
+        return $request;
     }
 }

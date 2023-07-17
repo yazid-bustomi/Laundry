@@ -19,9 +19,10 @@
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
-                                    <th scope="col">Nama</th>
+                                    <th scope="col">Nama Barang</th>
                                     <th scope="col">Jumlah</th>
                                     <th scope="col">Harga</th>
+                                    <th scope="col">Total Harga</th>
                                     <th scope="col">Status</th>
                                 </tr>
                             </thead>
@@ -30,22 +31,29 @@
                                 @foreach ($order as $item)
                                     <tr>
                                         <td>{{ $no }}</td>
-                                        @if ($item->kilo == '')
-                                            <td>{{ $item->kilo }}</td>
-                                        @else
-                                            <td>{{ $item->kilo }} Kg</td>
-                                        @endif
-                                        @if ($item->atasan == '')
-                                            <td>{{ $item->atasan }}</td>
-                                        @else
-                                            <td>{{ $item->atasan }} Pcs</td>
-                                        @endif
-                                        @if ($item->bawahan == '')
-                                            <td>{{ $item->bawahan }}</td>
-                                        @else
-                                            <td>{{ $item->bawahan }} Pcs</td>
-                                        @endif
-                                        <td>@currency($item->harga)</td>
+                                        
+                                        <td>
+                                            @foreach ($item->OrderDetail as $detail)
+                                                <li>{{ $detail->paket->namapaket }}</li>
+                                            @endforeach
+                                        </td>
+
+                                        <td>
+                                            @foreach ($item->OrderDetail as $detail)
+                                                <li>{{ $detail->jumlah }}</li>
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            @foreach ($item->OrderDetail as $detail)
+                                                <li>{{ $detail->harga }}</li>
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            @foreach ($item->OrderDetail as $detail)
+                                                <li>{{ $detail->total_harga }}</li>
+                                            @endforeach
+                                        </td>
+
                                         @if ($item->status == 'Order')
                                             <td class="text-success">{{ $item->status }}</td>
                                         @elseIf($item->status == 'Proses')
@@ -58,6 +66,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+
                     </div>
                 </div>
             </div>

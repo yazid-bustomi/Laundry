@@ -68,6 +68,7 @@
             var selectedProduct = product.options[product.selectedIndex].text;
 
             var tableRow = document.createElement('tr');
+            // <input name="total[]" type="hiden"/>
 
             var productNameCell = document.createElement('td');
             productNameCell.textContent = selectedProduct;
