@@ -14,10 +14,10 @@
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">Paket Kilo</th>
-                                    <th scope="col">Atasan</th>
-                                    <th scope="col">Bawahan</th>
+                                    <th scope="col">Id Order</th>
+                                    <th scope="col">Nama Pelanggan</th>
+                                    <th scope="col">Nama Barang</th>
+                                    <th scope="col">Jumlah</th>
                                     <th scope="col">Harga</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Aksi</th>

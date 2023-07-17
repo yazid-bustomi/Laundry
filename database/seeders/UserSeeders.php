@@ -47,22 +47,93 @@ class UserSeeders extends Seeder
         ]);
 
         DB::table('pakets')->insert([
-            'id' => '1',
             'namapaket' => 'kilo',
             'harga' => '10000',
         ]);
 
 
         DB::table('pakets')->insert([
-            'id' => '2',
-            'namapaket' => 'atasan',
+            'namapaket' => 'celana pendek',
             'harga' => '2000',
         ]);
 
         DB::table('pakets')->insert([
-            'id' => '3',
-            'namapaket' => 'bawahan',
+            'namapaket' => 'jaket',
             'harga' => '3500',
+        ]);
+
+        DB::table('pakets')->insert([
+            'namapaket'=>'Jaket Jeans',
+            'harga'=>'5000',
+        ]);
+
+        DB::table('pakets')->insert([
+            'namapaket'=>'Jaket/Sweeter Flanel',
+            'harga'=>'4500'
+        ]);
+        DB::table('pakets')->insert([
+            'namapaket'=>'Jaket Almamater',
+            'harga'=>'4000'
+        ]);
+        DB::table('pakets')->insert([
+            'namapaket'=>'Kemeja',
+            'harga'=>'2000'
+        ]);
+        DB::table('pakets')->insert([
+            'namapaket'=>'Kaos',
+            'harga'=>'1000'
+        ]);
+        DB::table('pakets')->insert([
+            'namapaket'=>'Daleman',
+            'harga'=>'4000'
+        ]);
+        DB::table('pakets')->insert([
+            'namapaket'=>'Cln Jeans Panjang',
+            'harga'=>'5000'
+        ]);
+        DB::table('pakets')->insert([
+            'namapaket'=>'Cln Jeans Pendek',
+            'harga'=>'3000'
+        ]);
+        DB::table('pakets')->insert([
+            'namapaket'=>'Cln Kain Panjang',
+            'harga'=>'3000'
+        ]);
+        DB::table('pakets')->insert([
+            'namapaket'=>'Cln Kain Pendek',
+            'harga'=>'2000'
+        ]);
+        DB::table('pakets')->insert([
+            'namapaket'=>'Cln Training Panjang',
+            'harga'=>'2500'
+        ]);
+        DB::table('pakets')->insert([
+            'namapaket'=>'Cln Training Pendek',
+            'harga'=>'2000'
+        ]);
+        DB::table('pakets')->insert([
+            'namapaket'=>'Sempak',
+            'harga'=>'7000'
+        ]);
+        DB::table('pakets')->insert([
+            'namapaket'=>'Mukena',
+            'harga'=>'2500'
+        ]);
+        DB::table('pakets')->insert([
+            'namapaket'=>'Kostum Karnaval',
+            'harga'=>'4000'
+        ]);
+        DB::table('pakets')->insert([
+            'namapaket'=>'Sprei',
+            'harga'=>'7000'
+        ]);
+        DB::table('pakets')->insert([
+            'namapaket'=>'Sarung',
+            'harga'=>'2500'
+        ]);
+        DB::table('pakets')->insert([
+            'namapaket'=>'Gamis',
+            'harga'=>'3000'
         ]);
 
     }

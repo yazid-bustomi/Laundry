@@ -51,6 +51,8 @@
             </div>
         </div>
     </div>
+
+    
     <script>
         function calculateTotal() {
             var product = document.getElementById('product');

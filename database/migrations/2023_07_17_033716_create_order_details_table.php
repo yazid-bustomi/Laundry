@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAtasansTable extends Migration
+class CreateOrderDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,15 @@ class CreateAtasansTable extends Migration
      */
     public function up()
     {
-        Schema::create('atasans', function (Blueprint $table) {
+        Schema::create('order_details', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('paket_id')->references('id')->on('pakets');
+            $table->foreignId('order_id')->references('id')->on('orders');
+            $table->integer('jumlah');
             $table->integer('harga');
+            $table->integer('total_harga');
             $table->timestamps();
+
         });
     }
 
@@ -28,6 +32,6 @@ class CreateAtasansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('atasans');
+        Schema::dropIfExists('order_details');
     }
 }

@@ -16,10 +16,10 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('kilo')->nullable();
-            $table->integer('atasan')->nullable();
-            $table->integer('bawahan')->nullable();
-            $table->integer('harga')->nullable();
+            $table->integer('no_order')->nullable();
+            // $table->integer('nama barang')->nullable();
+            // $table->integer('jumlah')->nullable();
+            // $table->integer('harga')->nullable();
             $table->string('status');
             $table->timestamps();
         });
