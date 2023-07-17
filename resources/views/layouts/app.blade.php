@@ -80,6 +80,7 @@
         </nav>
 
         <main class="py-4">
+            @include('layouts/pesan')
             @yield('content')
         </main>
     </div>

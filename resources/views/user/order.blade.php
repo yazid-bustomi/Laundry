@@ -4,11 +4,11 @@
         <div class="card">
             <h2 class="card-title pt-4 px-5">Laundry</h2>
             <div class="card-body">
-                @if (count($errors) > 0)
+                {{-- @if (count($errors) > 0)
                 <div class="alert alert-danger">
                         <li>{{ $errors->first() }}</li>
                 </div>
-                @endif
+                @endif --}}
 
                 <form action="{{ route('pktkilo') }}" method="POST" id="orderForm">
                     @csrf

@@ -42,4 +42,5 @@ Route::get('/user', [UserController::class, 'index'])->name('homeusr');
 Route::get('/user/order/kilo', [OrderController::class, 'create'])->name('pktkilo');
 Route::post('/user/order/kilo', [OrderController::class, 'store'])->name('pktkilo');
 Route::get('/user/order/biji', [OrderController::class, 'pktbiji'])->name('pktbiji');
-Route::post('/user/order/biji', [OrderController::class, 'pktbiji'])->name('pktbiji');
+Route::post('/user/order/biji', [OrderController::class, 'pktbijishow'])->name('pktbiji');
+Route::post('/user/order/biji', [OrderController::class, 'pktbijistore'])->name('pktbijistore');
