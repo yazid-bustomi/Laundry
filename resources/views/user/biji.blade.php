@@ -10,7 +10,7 @@
                         <div class="mb-3">
                             <label for="product">Pilih Produk:</label>
                             <select name="product" id="product" onchange="calculateTotal()">
-                                <option value="">Pilih Produk</option>
+                                <option value="">Pilih Kategori</option>
                                 @foreach ($paket as $product)
                                     <option value="{{ $product->id }}" data-harga="{{ $product->harga }}">
                                         {{ $product->namapaket }}
