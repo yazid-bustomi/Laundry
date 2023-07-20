@@ -130,10 +130,16 @@ class AdminController extends Controller
     }
 
     public function listorder(){
-        $order = Order::with('user')->get();
+        $order = Order::with(['OrderDetail', 'OrderDetail.Paket', 'user'])->get();
         Blade::directive('currency', function ($expression) {
             return "Rp. <?php echo number_format($expression, 0, ',', '.'); ?>";
         });
+
+        // foreach ($order as $data){
+        //     foreach($data->OrderDetail as $item){
+        //         return $order;
+        //     }
+        // }
 
         return view('admin.listorder', compact('order'));
     }

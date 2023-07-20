@@ -17,12 +17,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        // untuk format rupiah
         Blade::directive('currency', function ($expression) {
             return "Rp. <?php echo number_format($expression, 0, ',', '.'); ?>";
         });
+
         $user = Auth::user()->id;
-        $order = Order::where('user_id', $user)->get();
+        $order = Order::with(['OrderDetail', 'OrderDetail.Paket'])->where('user_id', $user)->get();
+
         return view('user.index', compact('order'));
     }
 
