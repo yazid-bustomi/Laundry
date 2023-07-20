@@ -1,12 +1,12 @@
 Aplikasi Laundry Sederhana
 
 Cara Pakai
-> download file
-> Copy .env.example menjadi .env / jalankan => ( cp .env.example .env )
-> buat key => php artisan key:generate
-> jalankan migrate => php artisan migrate
-> jalankan db seed => php artisan db:seed 
-> login admin or user
+1. download file
+2. Copy .env.example menjadi .env / jalankan => ( cp .env.example .env )
+3. buat key => php artisan key:generate
+4. jalankan migrate => php artisan migrate
+5. jalankan db seed => php artisan db:seed 
+6. login admin or user
  - user = admin@gmail.com   password = 11
  - user = user1@gmail.com   password = 11
  - user = user2@gmail.com   password = 11
