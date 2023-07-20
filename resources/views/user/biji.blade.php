@@ -84,7 +84,7 @@
             <td>${jumlah.value}</td>
             <td>
                 <button class="btn btn-danger" onclick="removeItem(this)">Hapus</button>
-                <input type="hidden" name="product[]" value="${product.selectedIndex}">
+                <input type="hidden" name="product[]" value="${product.value}">
                 <input type="hidden" name="jumlah[]" value="${jumlah.value}">
                 <input type="hidden" name="harga[]" value="${harga}">
             </td>

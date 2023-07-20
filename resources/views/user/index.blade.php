@@ -15,7 +15,7 @@
                     </div>
 
                     <div class="card-body">
-                        <table class="table">
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
@@ -27,6 +27,10 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @if ($order->count() == 0)
+                                    <td colspan="6" class="text-center text-danger">Data Kosong</td>
+                                @else
+
                                 <?php $no = 1; ?>
                                 @foreach ($order as $item)
                                     <tr>
@@ -69,6 +73,7 @@
                                     </tr>
                                     <?php $no++; ?>
                                 @endforeach
+                                @endif
                             </tbody>
                         </table>
 
