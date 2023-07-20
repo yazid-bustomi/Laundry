@@ -31,7 +31,7 @@
                                 @foreach ($order as $item)
                                     <tr>
                                         <td>{{ $no }}</td>
-                                        
+
                                         <td>
                                             @foreach ($item->OrderDetail as $detail)
                                                 <li>{{ $detail->paket->namapaket }}</li>
@@ -49,10 +49,15 @@
                                             @endforeach
                                         </td>
                                         <td>
+                                            <?php $total = 0; ?>
+
                                             @foreach ($item->OrderDetail as $detail)
                                                 <li>{{ $detail->total_harga }}</li>
+                                               <?php $total += $detail->total_harga ?>
                                             @endforeach
+                                            @currency($total)
                                         </td>
+
 
                                         @if ($item->status == 'Order')
                                             <td class="text-success">{{ $item->status }}</td>

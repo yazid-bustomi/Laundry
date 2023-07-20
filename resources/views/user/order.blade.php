@@ -16,7 +16,7 @@
                     <input type="hidden" name="status" id="status" name="user_id" value="Order">
 
                     <div class="mb-3 mt-3">
-                        <label for="pktkilo" class="form-label">Paket Kilo : </label>
+                        <label for="pktkilo" class="form-label">Paket {{ $pkt->namapaket }} </label>
                         <input type="text" class="form-control" id="pktkilo" placeholder="Silahkan isi satuan kilogram"
                             name="jumlah">
                     </div>
@@ -24,7 +24,7 @@
                     <div class="mb-3">
                         <table>
                             <tr>
-                                <td class="text-primary">Harga Paket Perkilo Rp.10.000</td>
+                                <td class="text-primary">Harga Paket {{ $pkt->namapaket }} {{ $pkt->harga }}</td>
                             </tr>
                             
                         </table>

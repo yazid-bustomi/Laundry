@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\Paket;
+use App\Models\OrderDetail;
+use GuzzleHttp\Psr7\Request;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
-use App\Models\Order;
-use App\Models\OrderDetail;
-use App\Models\Paket;
-use GuzzleHttp\Psr7\Request;
 
 class OrderController extends Controller
 {
@@ -28,8 +29,9 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
-        return view('user.order');
+        $pkt = Paket::where('namapaket', 'kilo')->first();
+
+        return view('user.order', compact('pkt'));
     }
 
     /**
@@ -40,41 +42,44 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-        //
-
         // $validate = $request->validate([
         //     'kilo' => 'integer',
         //     'bawahan' => 'integer',
         //     'atasan' => 'integer',
         // ]);
 
-        return $request;
-
-
         // untuk menambahkan 1 di baris akhir No order 
         $no = Order::all()->last();
         $tambahNo = $no->no_order + 1;
 
-        if ($request->kilo == "") {
+        if ($request->jumlah == "") {
             $error = "Silahkan isi jumlah kilogram";
             return redirect(route('pktkilo'))->withErrors($error);
+
         } else {
-            
+            // mengambil ke daftar paket untuk kilo
+            $pkt = Paket::where('namapaket', 'kilo')->first();
+
             $orderDetail = OrderDetail::all();
             $order = Order::all();
 
+            // menambahkan ke data order
             $order = new Order();
             $order->user_id = $request->user_id;
             $order->no_order = $tambahNo;
             $order->status = $request->status;
             $order->save();
 
+            $order_id = $order->id;
+
+            // menambahkan ke data order detail
             $orderDetail = new OrderDetail();
-            $orderDetail->paket_id = 1;
-            // $orderDetail->order_id = 
+            $orderDetail->paket_id = $pkt->id;
+            $orderDetail->order_id = $order_id;
             $orderDetail->jumlah = $request->jumlah;
-            // $orderDetail->harga = 
-            // $orderDetail->total_harga = 
+            $orderDetail->harga = $pkt->harga;
+            $orderDetail->total_harga = $request->jumlah * $pkt->harga;
+            $orderDetail->save();
 
             return redirect(route('homeusr'));
         }
@@ -145,6 +150,12 @@ class OrderController extends Controller
         //     $paket_id = $request['pket'[$key]
         // }
 
+        return $request;
+        foreach ($request->products as $index){
+            return $index;
+        }
+
+
         $totalharga = 0;
 
         $product = $request->input('product');
@@ -160,12 +171,5 @@ class OrderController extends Controller
         // belum selesai
     }
 
-    public function pktbijishow(StoreOrderRequest $request)
-    {
-        // foreach($request->product as $product){
-        //     return $product;
-        // }
-
-        return $request;
-    }
+    
 }
