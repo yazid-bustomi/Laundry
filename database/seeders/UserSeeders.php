@@ -61,20 +61,7 @@ class UserSeeders extends Seeder
             'namapaket' => 'jaket',
             'harga' => '3500',
         ]);
-
-        DB::table('pakets')->insert([
-            'namapaket'=>'Jaket Jeans',
-            'harga'=>'5000',
-        ]);
-
-        DB::table('pakets')->insert([
-            'namapaket'=>'Jaket/Sweeter Flanel',
-            'harga'=>'4500'
-        ]);
-        DB::table('pakets')->insert([
-            'namapaket'=>'Jaket Almamater',
-            'harga'=>'4000'
-        ]);
+        
         DB::table('pakets')->insert([
             'namapaket'=>'Kemeja',
             'harga'=>'2000'
@@ -88,41 +75,14 @@ class UserSeeders extends Seeder
             'harga'=>'4000'
         ]);
         DB::table('pakets')->insert([
-            'namapaket'=>'Cln Jeans Panjang',
+            'namapaket'=>'Celana Panjang',
             'harga'=>'5000'
         ]);
         DB::table('pakets')->insert([
-            'namapaket'=>'Cln Jeans Pendek',
+            'namapaket'=>'Celana Pendek',
             'harga'=>'3000'
         ]);
-        DB::table('pakets')->insert([
-            'namapaket'=>'Cln Kain Panjang',
-            'harga'=>'3000'
-        ]);
-        DB::table('pakets')->insert([
-            'namapaket'=>'Cln Kain Pendek',
-            'harga'=>'2000'
-        ]);
-        DB::table('pakets')->insert([
-            'namapaket'=>'Cln Training Panjang',
-            'harga'=>'2500'
-        ]);
-        DB::table('pakets')->insert([
-            'namapaket'=>'Cln Training Pendek',
-            'harga'=>'2000'
-        ]);
-        DB::table('pakets')->insert([
-            'namapaket'=>'Sempak',
-            'harga'=>'7000'
-        ]);
-        DB::table('pakets')->insert([
-            'namapaket'=>'Mukena',
-            'harga'=>'2500'
-        ]);
-        DB::table('pakets')->insert([
-            'namapaket'=>'Kostum Karnaval',
-            'harga'=>'4000'
-        ]);
+        
         DB::table('pakets')->insert([
             'namapaket'=>'Sprei',
             'harga'=>'7000'
