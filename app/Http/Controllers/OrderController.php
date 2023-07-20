@@ -2,25 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
-use App\Models\Paket;
-use App\Models\OrderDetail;
-use GuzzleHttp\Psr7\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreOrderRequest;
-use App\Http\Requests\UpdateOrderRequest;
+use App\Models\Order;
+use App\Models\OrderDetail;
+use App\Models\Paket;
+use GuzzleHttp\Psr7\Request;
 
 class OrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -42,15 +32,15 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-        // $validate = $request->validate([
-        //     'kilo' => 'integer',
-        //     'bawahan' => 'integer',
-        //     'atasan' => 'integer',
-        // ]);
-
-        // untuk menambahkan 1 di baris akhir No order 
+        // untuk menambahkan 1 di baris akhir No order
         $no = Order::all()->last();
-        $tambahNo = $no->no_order + 1;
+
+        if ($no == "") {
+            $tambahNo = 1;
+        } else {
+            $tambahNo = $no->no_order + 1;
+
+        }
 
         if ($request->jumlah == "") {
             $error = "Silahkan isi jumlah kilogram";
@@ -86,51 +76,6 @@ class OrderController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Order $order)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Order $order)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateOrderRequest  $request
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateOrderRequest $request, Order $order)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Order $order)
-    {
-        //
-    }
-
     public function pktbiji()
     {
         $paket = Paket::all();
@@ -140,36 +85,48 @@ class OrderController extends Controller
 
     public function pktbijistore(StoreOrderRequest $request)
     {
-        // $validate = $request->validate([
-        //         'kilo' => 'array',
-        //         'bawahan' => 'integer',
-        //         'atasan' => 'integer',
-        //     ]);
-
-        // foreach($request['kilo'] as $key => $kilo){
-        //     $paket_id = $request['pket'[$key]
-        // }
-
-        return $request;
-        foreach ($request->products as $index){
-            return $index;
-        }
-
-
-        $totalharga = 0;
-
         $product = $request->input('product');
         $jumlah = $request->input('jumlah');
+        $harga = $request->input('harga');
 
-        $productData = Paket::findOrFail($product);
-        $hargaProduk = $productData->harga;
+        // return $harga;
+        $no = Order::all()->last();
 
-        $totalharga = $hargaProduk * $jumlah;
+        if ($no == "") {
+            $tambahNo = 1;
+        } else {
+            $tambahNo = $no->no_order + 1;
 
-        return $totalharga;
+        }
 
-        // belum selesai
+        // $orderDetail = OrderDetail::all();
+        $order = Order::all();
+
+        // menambahkan ke data order
+        $order = new Order();
+        $order->user_id = $request->user_id;
+        $order->no_order = $tambahNo;
+        $order->status = $request->status;
+        $order->save();
+
+        $order_id = $order->id;
+
+        // data product masi diawali dari angka 0, bukan dari angka 1
+        $dataOrderDetail = [];
+        for ($i=0; $i < count($product); $i++){
+            $dataOrderDetail[] = [
+            'paket_id' => $product[$i],
+            'order_id' => $order_id,
+            'jumlah' => $jumlah[$i],
+            'harga' => $harga[$i], 
+            'total_harga' => $harga[$i] * $jumlah[$i],
+            ];
+        }
+        OrderDetail::insert($dataOrderDetail);
+
+
+        return redirect(route('homeusr'));
+
     }
 
-    
 }
