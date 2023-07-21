@@ -55,9 +55,15 @@
                                             </td>
 
                                             <td>
+                                                <?php $hargall = 0 ?>
                                                 @foreach ($item->OrderDetail as $harga)
-                                                    <li>{{ $harga->total_harga }}</li>
+                                                @php
+                                                    $hargasatuan = $harga->total_harga;
+                                                    $hargall += $harga->total_harga;
+                                                @endphp                                                      
+                                                <li>@currency($hargasatuan)</li>
                                                 @endforeach
+                                                    Total = @currency($hargall)
                                             </td>
 
                                             {{-- Untuk membuat aksi dan button selesai apa belum --}}
