@@ -19,7 +19,8 @@ class ApiOrderController extends Controller
      */
     public function index()
     {
-        $order = Paket::all();
+        $order = Order::with(['OrderDetail', 'OrderDetail.Paket', 'user'])->get();
+
         // $user = Auth::user()->id;
         // $order = Order::with(['OrderDetail', 'OrderDetail.Paket'])->where('user_id', $user)->get();
 
