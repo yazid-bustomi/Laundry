@@ -49,26 +49,30 @@
                                         </td>
                                         <td>
                                             @foreach ($item->OrderDetail as $detail)
-                                                <li>{{ $detail->harga }}</li>
+                                              @php
+                                                  $hbiji = $detail->harga;
+                                              @endphp  
+                                              <li>@currency($hbiji)</li>
                                             @endforeach
                                         </td>
                                         <td>
                                             <?php $total = 0; ?>
 
                                             @foreach ($item->OrderDetail as $detail)
-                                                <li>{{ $detail->total_harga }}</li>
-                                               <?php $total += $detail->total_harga ?>
+                                               <?php $tharga = $detail->total_harga;
+                                               $total += $detail->total_harga; ?>
+                                               <li>@currency($tharga)</li>
                                             @endforeach
                                             @currency($total)
                                         </td>
 
 
                                         @if ($item->status == 'Order')
-                                            <td class="text-success">{{ $item->status }}</td>
+                                            <td class="text-success fs-5">{{ $item->status }}</td>
                                         @elseIf($item->status == 'Proses')
-                                            <td class="text-primary">{{ $item->status }}</td>
+                                            <td class="text-primary fs-5">{{ $item->status }}</td>
                                         @else
-                                            <td class="text-danger">{{ $item->status }}</td>
+                                            <td class="text-danger fs-5">{{ $item->status }}</td>
                                         @endif
                                     </tr>
                                     <?php $no++; ?>
