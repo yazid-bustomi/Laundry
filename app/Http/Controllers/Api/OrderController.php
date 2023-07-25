@@ -61,7 +61,7 @@ class OrderController extends Controller
      */
     public function show(ApiOrder $apiOrder)
     {
-        //
+        $userorder = Order::all();
     }
 
     /**

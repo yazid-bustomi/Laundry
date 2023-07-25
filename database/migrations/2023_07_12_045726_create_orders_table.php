@@ -17,9 +17,8 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('no_order')->nullable();
-            // $table->integer('nama barang')->nullable();
-            // $table->integer('jumlah')->nullable();
-            // $table->integer('harga')->nullable();
+            $table->integer('bayar')->nullable();
+            $table->integer('total_bayar')->nullable();
             $table->string('status');
             $table->timestamps();
         });

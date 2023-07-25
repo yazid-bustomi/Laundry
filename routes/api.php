@@ -26,6 +26,7 @@ Route::get('pelanggan', [PelangganController::class, 'index']);
 Route::post('create/pelanggan', [PelangganController::class, 'store']);
 
 
+Route::get('user/order', [OrderController::class, 'show']);
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

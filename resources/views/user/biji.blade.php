@@ -49,10 +49,12 @@
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
-                            <tbody id="daftarItem"></tbody>
+                            <tbody id="daftarItem">
 
-                            <button type="submit" id="store_button" class="btn btn-primary ms-5">Order</button>
+                            </tbody>
+
                         </table>
+                        <button type="submit" id="store_button" class="btn btn-primary ms-5 float-end">Order</button>
                     </form>
                     <h5>Total Harga: <span id="totalHarga"></span></h5>
                 </div>
