@@ -10,64 +10,84 @@
                     </h3>
 
                     <div class="card-body">
-                        <table class="table">
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">Paket Kilo</th>
-                                    <th scope="col">Atasan</th>
-                                    <th scope="col">Bawahan</th>
+                                    <th scope="col">Nama Pelanggan</th>
+                                    <th scope="col">Id Order</th>
+                                    <th scope="col">Nama Barang</th>
+                                    <th scope="col">Jumlah</th>
                                     <th scope="col">Harga</th>
-                                    <th scope="col">Status</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $no = 1; ?>
-                                @foreach ($order as $item)
-                                    <tr>
-                                        <td>{{ $no }}</td>
-                                        <td>{{ $item->user->name }}</td>
-                                        @if ($item->kilo == '')
-                                            <td>{{ $item->kilo }}</td>
-                                        @else
-                                            <td>{{ $item->kilo }} Kg</td>
-                                        @endif
-                                        @if ($item->atasan == '')
-                                            <td>{{ $item->atasan }}</td>
-                                        @else
-                                            <td>{{ $item->atasan }} Pcs</td>
-                                        @endif
-                                        @if ($item->bawahan == '')
-                                            <td>{{ $item->bawahan }}</td>
-                                        @else
-                                            <td>{{ $item->bawahan }} Pcs</td>
-                                        @endif
-                                        <td>@currency($item->harga)</td>
-                                        @if ($item->status == 'Selesai')
-                                            <td class="text-danger">{{ $item->status }}</td>
-                                            <td>
-                                                <div class="text-danger">Selesai</div>
-                                            </td>
-                                        @endif
+                                @if ($order->count() == '')
+                                    <td colspan="6" class="text-center text-danger">Data Belum Ada</td>
+                                @else
+                                    <?php $no = 1; ?>
+                                    @foreach ($order as $item)
+                                        <tr>
+                                            <td>{{ $no }}</td>
+                                            <td>{{ $item->user->name }}</td>
 
-                                        @if ($item->status == 'Order')
-                                            <td class="text-success">{{ $item->status }}</td>
                                             <td>
-                                                <a href="{{ route('proses', $item->id) }}"
-                                                    class="btn btn-success">Proses</a>
+                                                {{-- untuk mengambil 1 data order id dan di masukkan ke dalam variable, di tampilkan --}}
+                                                @foreach ($item->OrderDetail as $detail)
+                                                    @php
+                                                        $orderId = $detail->order_id;
+                                                    @endphp
+                                                @endforeach
+                                                {{ $orderId }}
                                             </td>
-                                        @elseIf($item->status == 'Proses')
-                                            <td class="text-primary">{{ $item->status }}</td>
+
                                             <td>
-                                                <a href="{{ route('selesai', $item->id) }}"
-                                                    class="btn btn-primary">Selesai</a>
+                                                @foreach ($item->OrderDetail as $paket)
+                                                    <li>{{ $paket->paket->namapaket }}</li>
+                                                @endforeach
                                             </td>
-                                        @endif
-                                    </tr>
-                                    <?php $no++; ?>
-                                @endforeach
+
+                                            <td>
+                                                @foreach ($item->OrderDetail as $jumlah)
+                                                    <li>{{ $jumlah->jumlah }}</li>
+                                                @endforeach
+                                            </td>
+
+                                            <td>
+                                                <?php $hargall = 0 ?>
+                                                @foreach ($item->OrderDetail as $harga)
+                                                @php
+                                                    $hargasatuan = $harga->total_harga;
+                                                    $hargall += $harga->total_harga;
+                                                @endphp                                                      
+                                                <li>@currency($hargasatuan)</li>
+                                                @endforeach
+                                                    Total = @currency($hargall)
+                                            </td>
+
+                                            {{-- Untuk membuat aksi dan button selesai apa belum --}}
+                                            @if ($item->status == 'Selesai')
+                                                <td>
+                                                    <div class="text-danger">Selesai</div>
+                                                </td>
+                                            @endif
+
+                                            @if ($item->status == 'Order')
+                                                <td>
+                                                    <a href="{{ route('proses', $item->id) }}"
+                                                        class="btn btn-success">Proses</a>
+                                                </td>
+                                            @elseIf($item->status == 'Proses')
+                                                <td>
+                                                    <a href="{{ route('selesai', $item->id) }}"
+                                                        class="btn btn-primary">Selesai</a>
+                                                </td>
+                                            @endif
+                                        </tr>
+                                        <?php $no++; ?>
+                                    @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>

@@ -1,3 +1,17 @@
+Aplikasi Laundry Sederhana
+
+Cara Pakai
+1. download file
+2. Copy .env.example menjadi .env / jalankan => ( cp .env.example .env )
+3. buat key => php artisan key:generate
+4. jalankan migrate => php artisan migrate
+5. jalankan db seed => php artisan db:seed 
+6. login admin or user
+ - user = admin@gmail.com   password = 11
+ - user = user1@gmail.com   password = 11
+ - user = user2@gmail.com   password = 11
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">

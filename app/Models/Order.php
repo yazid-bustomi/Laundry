@@ -13,4 +13,14 @@ class Order extends Model
     }
 
     protected $guarded = ['id'];
+
+    /**
+     * Get all of the OrderDetail for the Order
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function OrderDetail()
+    {
+        return $this->hasMany(OrderDetail::class);
+    }
 }

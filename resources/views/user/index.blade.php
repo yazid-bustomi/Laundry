@@ -15,50 +15,72 @@
                     </div>
 
                     <div class="card-body">
-                        <table class="table">
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
-                                    <th scope="col">Paket Kilo</th>
-                                    <th scope="col">Atasan</th>
-                                    <th scope="col">Bawahan</th>
+                                    <th scope="col">Nama Barang</th>
+                                    <th scope="col">Jumlah</th>
                                     <th scope="col">Harga</th>
+                                    <th scope="col">Total Harga</th>
                                     <th scope="col">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @if ($order->count() == 0)
+                                    <td colspan="6" class="text-center text-danger">Data Kosong</td>
+                                @else
+
                                 <?php $no = 1; ?>
                                 @foreach ($order as $item)
                                     <tr>
                                         <td>{{ $no }}</td>
-                                        @if ($item->kilo == '')
-                                            <td>{{ $item->kilo }}</td>
-                                        @else
-                                            <td>{{ $item->kilo }} Kg</td>
-                                        @endif
-                                        @if ($item->atasan == '')
-                                            <td>{{ $item->atasan }}</td>
-                                        @else
-                                            <td>{{ $item->atasan }} Pcs</td>
-                                        @endif
-                                        @if ($item->bawahan == '')
-                                            <td>{{ $item->bawahan }}</td>
-                                        @else
-                                            <td>{{ $item->bawahan }} Pcs</td>
-                                        @endif
-                                        <td>@currency($item->harga)</td>
+
+                                        <td>
+                                            @foreach ($item->OrderDetail as $detail)
+                                                <li>{{ $detail->paket->namapaket }}</li>
+                                            @endforeach
+                                        </td>
+
+                                        <td>
+                                            @foreach ($item->OrderDetail as $detail)
+                                                <li>{{ $detail->jumlah }}</li>
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            @foreach ($item->OrderDetail as $detail)
+                                              @php
+                                                  $hbiji = $detail->harga;
+                                              @endphp  
+                                              <li>@currency($hbiji)</li>
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            <?php $total = 0; ?>
+
+                                            @foreach ($item->OrderDetail as $detail)
+                                               <?php $tharga = $detail->total_harga;
+                                               $total += $detail->total_harga; ?>
+                                               <li>@currency($tharga)</li>
+                                            @endforeach
+                                            @currency($total)
+                                        </td>
+
+
                                         @if ($item->status == 'Order')
-                                            <td class="text-success">{{ $item->status }}</td>
+                                            <td class="text-success fs-5">{{ $item->status }}</td>
                                         @elseIf($item->status == 'Proses')
-                                            <td class="text-primary">{{ $item->status }}</td>
+                                            <td class="text-primary fs-5">{{ $item->status }}</td>
                                         @else
-                                            <td class="text-danger">{{ $item->status }}</td>
+                                            <td class="text-danger fs-5">{{ $item->status }}</td>
                                         @endif
                                     </tr>
                                     <?php $no++; ?>
                                 @endforeach
+                                @endif
                             </tbody>
                         </table>
+
                     </div>
                 </div>
             </div>

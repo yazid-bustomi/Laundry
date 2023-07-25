@@ -47,22 +47,53 @@ class UserSeeders extends Seeder
         ]);
 
         DB::table('pakets')->insert([
-            'id' => '1',
             'namapaket' => 'kilo',
             'harga' => '10000',
         ]);
 
 
         DB::table('pakets')->insert([
-            'id' => '2',
-            'namapaket' => 'atasan',
+            'namapaket' => 'celana pendek',
             'harga' => '2000',
         ]);
 
         DB::table('pakets')->insert([
-            'id' => '3',
-            'namapaket' => 'bawahan',
+            'namapaket' => 'jaket',
             'harga' => '3500',
+        ]);
+        
+        DB::table('pakets')->insert([
+            'namapaket'=>'Kemeja',
+            'harga'=>'2000'
+        ]);
+        DB::table('pakets')->insert([
+            'namapaket'=>'Kaos',
+            'harga'=>'1000'
+        ]);
+        DB::table('pakets')->insert([
+            'namapaket'=>'Daleman',
+            'harga'=>'4000'
+        ]);
+        DB::table('pakets')->insert([
+            'namapaket'=>'Celana Panjang',
+            'harga'=>'5000'
+        ]);
+        DB::table('pakets')->insert([
+            'namapaket'=>'Celana Pendek',
+            'harga'=>'3000'
+        ]);
+        
+        DB::table('pakets')->insert([
+            'namapaket'=>'Sprei',
+            'harga'=>'7000'
+        ]);
+        DB::table('pakets')->insert([
+            'namapaket'=>'Sarung',
+            'harga'=>'2500'
+        ]);
+        DB::table('pakets')->insert([
+            'namapaket'=>'Gamis',
+            'harga'=>'3000'
         ]);
 
     }
