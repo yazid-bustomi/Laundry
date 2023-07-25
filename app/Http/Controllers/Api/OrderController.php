@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Helpers\ApiFormatter;
 use App\Models\Order;
@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
-class ApiOrderController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -3,8 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ApiOrderController;
-use App\Http\Controllers\ApiPelangganController;
+use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\PelangganController;
 
 
 /*
@@ -19,11 +19,11 @@ use App\Http\Controllers\ApiPelangganController;
 */
 
 
-// admin
 
-Route::get('order', [ApiOrderController::class, 'index']);
-Route::get('pelanggan', [ApiPelangganController::class, 'index']);
-Route::post('create/pelanggan', [ApiPelangganController::class, 'store']);
+// admin
+Route::get('order', [OrderController::class, 'index']);
+Route::get('pelanggan', [PelangganController::class, 'index']);
+Route::post('create/pelanggan', [PelangganController::class, 'store']);
 
 
 
@@ -32,6 +32,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// Route::apiResource('pelanggan', ApiOrderController::class);
 
 

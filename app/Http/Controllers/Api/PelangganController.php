@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -8,7 +8,7 @@ use App\Helpers\ApiFormatter;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
 
-class ApiPelangganController extends Controller
+class PelangganController extends Controller
 {
     /**
      * Display a listing of the resource.
