@@ -3,13 +3,6 @@
     <br/><br/>
     <h1>Aplikasi Manajemen Laundry</h1>
     <p>Sistem Informasi Manajemen Laundry berbasis Web yang dikembangkan menggunakan Framework Laravel 8. Proyek ini merupakan hasil magang dan kolaborasi, dirancang untuk mempermudah pengelolaan pesanan laundry baik berdasarkan kiloan maupun satuan (biji).</p>
-    
-    <p>
-        <a href="https://laravel.com/docs/8.x"><img src="https://img.shields.io/badge/Laravel-8.x-FF2D20.svg?logo=laravel&style=flat-square" alt="Laravel"></a>
-        <a href="https://www.php.net/"><img src="https://img.shields.io/badge/PHP-7.3%20%7C%208.0-777BB4.svg?logo=php&style=flat-square" alt="PHP"></a>
-        <a href="https://getbootstrap.com/"><img src="https://img.shields.io/badge/Bootstrap-5.1.3-7952B3.svg?logo=bootstrap&style=flat-square" alt="Bootstrap"></a>
-        <a href="https://www.mysql.com/"><img src="https://img.shields.io/badge/MySQL-Database-4479A1.svg?logo=mysql&style=flat-square" alt="MySQL"></a>
-    </p>
 </div>
 
 ---
