@@ -1,78 +1,139 @@
-Aplikasi Laundry Sederhana
+<div align="center">
+    <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="300" alt="Laravel Logo">
+    <br/><br/>
+    <h1>Aplikasi Manajemen Laundry</h1>
+    <p>Sistem Informasi Manajemen Laundry berbasis Web yang dikembangkan menggunakan Framework Laravel 8. Proyek ini merupakan hasil magang dan kolaborasi, dirancang untuk mempermudah pengelolaan pesanan laundry baik berdasarkan kiloan maupun satuan (biji).</p>
+    
+    <p>
+        <a href="https://laravel.com/docs/8.x"><img src="https://img.shields.io/badge/Laravel-8.x-FF2D20.svg?logo=laravel&style=flat-square" alt="Laravel"></a>
+        <a href="https://www.php.net/"><img src="https://img.shields.io/badge/PHP-7.3%20%7C%208.0-777BB4.svg?logo=php&style=flat-square" alt="PHP"></a>
+        <a href="https://getbootstrap.com/"><img src="https://img.shields.io/badge/Bootstrap-5.1.3-7952B3.svg?logo=bootstrap&style=flat-square" alt="Bootstrap"></a>
+        <a href="https://www.mysql.com/"><img src="https://img.shields.io/badge/MySQL-Database-4479A1.svg?logo=mysql&style=flat-square" alt="MySQL"></a>
+    </p>
+</div>
 
-Cara Pakai
-1. download file
-2. Copy .env.example menjadi .env / jalankan => ( cp .env.example .env )
-3. buat key => php artisan key:generate
-4. jalankan migrate => php artisan migrate
-5. jalankan db seed => php artisan db:seed 
-6. login admin or user
- - user = admin@gmail.com   password = 11
- - user = user1@gmail.com   password = 11
- - user = user2@gmail.com   password = 11
+---
 
+## 🚀 Fitur Utama
 
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+Aplikasi ini dibagi menjadi 2 hak akses (role): **Admin** dan **Pelanggan (User)**.
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### 👨‍💼 Fitur Admin
+- **Dashboard Admin**: Ringkasan data pesanan dan pelanggan.
+- **Manajemen Pelanggan**: Menambah dan melihat daftar pelanggan yang terdaftar.
+- **Manajemen Pesanan (Order)**: 
+  - Melihat seluruh daftar pesanan laundry.
+  - Mengubah status pesanan menjadi sedang diproses.
+  - Menyelesaikan pesanan.
 
-## About Laravel
+### 👤 Fitur Pelanggan (User)
+- **Dashboard Pelanggan**: Halaman utama untuk pelanggan.
+- **Pesan Laundry (Kiloan)**: Memesan jasa laundry berdasarkan berat (Kg).
+- **Pesan Laundry (Satuan/Biji)**: Memesan jasa laundry berdasarkan jumlah pakaian/barang.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 💻 Tech Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Backend**: Laravel 8.75 (PHP ^7.3 / ^8.0)
+- **Frontend**: Bootstrap 5.1.3, Sass, Laravel Mix
+- **Database**: MySQL
+- **Lainnya**: Artisan, Composer, NPM
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 📸 Screenshots
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+*(Catatan: Silakan ganti URL gambar di bawah ini dengan screenshot asli aplikasi Anda)*
 
-## Laravel Sponsors
+| Dashboard Admin | Form Pesanan (Kiloan) |
+| :---: | :---: |
+| <img src="https://via.placeholder.com/500x300.png?text=Dashboard+Admin" alt="Dashboard Admin"> | <img src="https://via.placeholder.com/500x300.png?text=Form+Pesan+Kiloan" alt="Form Pesanan Kiloan"> |
+| **Daftar Pesanan** | **Dashboard User** |
+| <img src="https://via.placeholder.com/500x300.png?text=Daftar+Pesanan" alt="Daftar Pesanan"> | <img src="https://via.placeholder.com/500x300.png?text=Dashboard+User" alt="Dashboard User"> |
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+---
 
-### Premium Partners
+## 🛠️ Persyaratan Sistem (Prerequisites)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Sebelum menginstal aplikasi ini, pastikan sistem Anda memiliki:
+- [PHP](https://www.php.net/) (Versi 7.3 atau 8.0 ke atas)
+- [Composer](https://getcomposer.org/)
+- [Node.js & NPM](https://nodejs.org/) (Opsional untuk compile asset)
+- Web Server (Apache/Nginx) misal: XAMPP, Laragon, dll.
+- MySQL Database
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## ⚙️ Panduan Instalasi (Cara Pakai)
 
-## Code of Conduct
+Ikuti langkah-langkah di bawah ini untuk menjalankan project di lokal Anda:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. **Clone atau Download Repository**
+   ```bash
+   git clone <url-repository-anda>
+   cd Laundry
+   ```
 
-## Security Vulnerabilities
+2. **Install Dependensi PHP (Composer)**
+   ```bash
+   composer install
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+3. **Install Dependensi NPM (Opsional)**
+   ```bash
+   npm install
+   npm run dev
+   ```
 
-## License
+4. **Konfigurasi Environment**
+   Salin file `.env.example` menjadi `.env`.
+   ```bash
+   cp .env.example .env
+   ```
+   Buka file `.env` dan atur konfigurasi database Anda (misalnya `DB_DATABASE=laundry`).
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+5. **Generate Application Key**
+   ```bash
+   php artisan key:generate
+   ```
+
+6. **Migrasi Database & Seeder**
+   Pastikan Anda sudah membuat database kosong di MySQL, lalu jalankan:
+   ```bash
+   php artisan migrate
+   php artisan db:seed
+   ```
+
+7. **Jalankan Aplikasi**
+   ```bash
+   php artisan serve
+   ```
+   Aplikasi dapat diakses melalui `http://localhost:8000`.
+
+---
+
+## 🔐 Akses Login Default
+
+Setelah melakukan `db:seed`, Anda bisa menggunakan akun berikut untuk login:
+
+### 1. Akun Admin
+- **Email**: `admin@gmail.com`
+- **Password**: `11`
+
+### 2. Akun Pelanggan (User)
+- **Email**: `user1@gmail.com`
+- **Password**: `11`
+- **Email**: `user2@gmail.com`
+- **Password**: `11`
+
+---
+
+## 🤝 Kolaborasi & Kredit
+
+Aplikasi ini dikembangkan sebagai hasil dari kegiatan **Magang / Praktik Kerja**. 
+Terima kasih kepada teman-teman magang yang telah berkolaborasi dalam proses pengembangan dan penyelesaian aplikasi ini.
+
+Dibuat dengan ❤️ oleh **[Nama Anda/Tim Anda]**.
+
+---
