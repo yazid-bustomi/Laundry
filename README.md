@@ -35,18 +35,6 @@ Aplikasi ini dibagi menjadi 2 hak akses (role): **Admin** dan **Pelanggan (User)
 
 ---
 
-## 📸 Screenshots
-
-*(Catatan: Silakan ganti URL gambar di bawah ini dengan screenshot asli aplikasi Anda)*
-
-| Dashboard Admin | Form Pesanan (Kiloan) |
-| :---: | :---: |
-| <img src="https://via.placeholder.com/500x300.png?text=Dashboard+Admin" alt="Dashboard Admin"> | <img src="https://via.placeholder.com/500x300.png?text=Form+Pesan+Kiloan" alt="Form Pesanan Kiloan"> |
-| **Daftar Pesanan** | **Dashboard User** |
-| <img src="https://via.placeholder.com/500x300.png?text=Daftar+Pesanan" alt="Daftar Pesanan"> | <img src="https://via.placeholder.com/500x300.png?text=Dashboard+User" alt="Dashboard User"> |
-
----
-
 ## 🛠️ Persyaratan Sistem (Prerequisites)
 
 Sebelum menginstal aplikasi ini, pastikan sistem Anda memiliki:
